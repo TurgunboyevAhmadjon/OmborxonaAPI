@@ -1,0 +1,7 @@
+son = [i for i in range(1, 21)]
+print(son)
+for i in range(1,21):
+    print(i)
+
+
+    
