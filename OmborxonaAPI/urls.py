@@ -8,6 +8,9 @@ from userapp.views import *
 from asosiy.views import *
 from statsapp.views import *
 
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+
+
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -32,4 +35,6 @@ urlpatterns = [
     path('client/', ClientListCreate.as_view()),
     path('client/<int:pk>/', ClientUpdate.as_view()),
     path('swagger', schema_view.with_ui('swagger', cache_timeout=0), name='swagger-doc'),
+    path('token-ber/', TokenObtainPairView.as_view(), name='token-ber'),
+    path('token-refresh/', TokenRefreshView.as_view(), name='token-refresh'),
 ]

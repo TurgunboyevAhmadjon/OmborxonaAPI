@@ -1,6 +1,6 @@
 from requests import Response
 from rest_framework.views import APIView
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .Serializer import *
 from .models import *
 from userapp.serializer import *
@@ -13,6 +13,7 @@ class OmborAPIView(APIView):
 class ClientListCreate(generics.ListCreateAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request):
         ombor = Ombor.objects.get(user=request.user)
@@ -31,6 +32,7 @@ class ClientListCreate(generics.ListCreateAPIView):
 class ClientUpdate(generics.RetrieveUpdateDestroyAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 class MahsulotListCreate(generics.ListCreateAPIView):
     queryset = Mahsulot.objects.all()
@@ -53,6 +55,7 @@ class MahsulotListCreate(generics.ListCreateAPIView):
 class MahsulotUpdate(generics.RetrieveUpdateDestroyAPIView):
     queryset = Mahsulot.objects.all()
     serializer_class = MahsulotSer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 
